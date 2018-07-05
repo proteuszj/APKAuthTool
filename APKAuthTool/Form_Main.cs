@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
+using Common;
+using System;
+using System.IO;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.IO;
-using Common;
+using System.Windows.Forms;
 
 namespace APKAuthTool
 {
@@ -19,6 +14,12 @@ namespace APKAuthTool
         public Form_Main()
         {
             InitializeComponent();
+
+            string productName = ((AssemblyProductAttribute)Assembly.GetExecutingAssembly().GetCustomAttribute(typeof(AssemblyProductAttribute))).Product;
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            string fileVersion = ((AssemblyFileVersionAttribute)Assembly.GetExecutingAssembly().GetCustomAttribute(typeof(AssemblyFileVersionAttribute))).Version;
+            Text = $"{productName} v{version}";
+
             openFileDialog_APK.InitialDirectory = Application.StartupPath;
         }
 
@@ -46,13 +47,35 @@ namespace APKAuthTool
             byte[] value = key.SignData(data, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1);
 
             //wirte to file
-            StreamWriter sw = new StreamWriter(textBox_APK.Text + ".sign");
+            string signFileName = textBox_APK.Text + ".sign";
+            StreamWriter sw = new StreamWriter(signFileName);
             sw.WriteLine("Expire: " + authExpireString);
-            sw.WriteLine("Signature: "+ Convert.ToBase64String(value));
+            sw.WriteLine("Signature: " + Convert.ToBase64String(value));
             //sw.WriteLine(new ByteArray(value).ToHexString());
             sw.Close();
 
-            MessageBox.Show("授权文件生成成功");
+            MessageBox.Show($"授权文件-{signFileName}-生成成功","信息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void textBox_APK_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string fileName = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+                textBox_APK.Text = fileName;
+            }
+        }
+
+        private void textBox_APK_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string fileName = ((string[])e.Data.GetData(DataFormats.FileDrop))[0];
+                if (new FileInfo(fileName).Extension.ToUpper() == ".APK")
+                {
+                    e.Effect = DragDropEffects.Copy;
+                }
+            }
         }
     }
 }

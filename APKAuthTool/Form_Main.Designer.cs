@@ -43,16 +43,19 @@
             // 
             // textBox_APK
             // 
+            this.textBox_APK.AllowDrop = true;
             this.textBox_APK.Location = new System.Drawing.Point(79, 20);
-            this.textBox_APK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_APK.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_APK.Name = "textBox_APK";
             this.textBox_APK.Size = new System.Drawing.Size(290, 21);
             this.textBox_APK.TabIndex = 1;
+            this.textBox_APK.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox_APK_DragDrop);
+            this.textBox_APK.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox_APK_DragEnter);
             // 
             // button_Auth
             // 
             this.button_Auth.Location = new System.Drawing.Point(313, 57);
-            this.button_Auth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Auth.Margin = new System.Windows.Forms.Padding(2);
             this.button_Auth.Name = "button_Auth";
             this.button_Auth.Size = new System.Drawing.Size(56, 22);
             this.button_Auth.TabIndex = 2;
@@ -63,7 +66,7 @@
             // button_Open
             // 
             this.button_Open.Location = new System.Drawing.Point(7, 17);
-            this.button_Open.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_Open.Margin = new System.Windows.Forms.Padding(2);
             this.button_Open.Name = "button_Open";
             this.button_Open.Size = new System.Drawing.Size(69, 22);
             this.button_Open.TabIndex = 3;
@@ -77,7 +80,7 @@
             this.dateTimePicker_AuthExpire.Location = new System.Drawing.Point(79, 56);
             this.dateTimePicker_AuthExpire.Name = "dateTimePicker_AuthExpire";
             this.dateTimePicker_AuthExpire.ShowCheckBox = true;
-            this.dateTimePicker_AuthExpire.Size = new System.Drawing.Size(200, 21);
+            this.dateTimePicker_AuthExpire.Size = new System.Drawing.Size(149, 21);
             this.dateTimePicker_AuthExpire.TabIndex = 4;
             // 
             // label_AuthExpire
@@ -99,7 +102,7 @@
             this.Controls.Add(this.button_Open);
             this.Controls.Add(this.button_Auth);
             this.Controls.Add(this.textBox_APK);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form_Main";
             this.Text = "APK授权工具";
             this.ResumeLayout(false);
