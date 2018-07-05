@@ -32,6 +32,8 @@
             this.textBox_APK = new System.Windows.Forms.TextBox();
             this.button_Auth = new System.Windows.Forms.Button();
             this.button_Open = new System.Windows.Forms.Button();
+            this.dateTimePicker_AuthExpire = new System.Windows.Forms.DateTimePicker();
+            this.label_AuthExpire = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // openFileDialog_APK
@@ -41,16 +43,18 @@
             // 
             // textBox_APK
             // 
-            this.textBox_APK.Location = new System.Drawing.Point(145, 81);
+            this.textBox_APK.Location = new System.Drawing.Point(79, 20);
+            this.textBox_APK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox_APK.Name = "textBox_APK";
-            this.textBox_APK.Size = new System.Drawing.Size(534, 31);
+            this.textBox_APK.Size = new System.Drawing.Size(290, 21);
             this.textBox_APK.TabIndex = 1;
             // 
             // button_Auth
             // 
-            this.button_Auth.Location = new System.Drawing.Point(685, 76);
+            this.button_Auth.Location = new System.Drawing.Point(313, 57);
+            this.button_Auth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_Auth.Name = "button_Auth";
-            this.button_Auth.Size = new System.Drawing.Size(103, 39);
+            this.button_Auth.Size = new System.Drawing.Size(56, 22);
             this.button_Auth.TabIndex = 2;
             this.button_Auth.Text = "授权";
             this.button_Auth.UseVisualStyleBackColor = true;
@@ -58,22 +62,44 @@
             // 
             // button_Open
             // 
-            this.button_Open.Location = new System.Drawing.Point(12, 76);
+            this.button_Open.Location = new System.Drawing.Point(7, 17);
+            this.button_Open.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button_Open.Name = "button_Open";
-            this.button_Open.Size = new System.Drawing.Size(127, 39);
+            this.button_Open.Size = new System.Drawing.Size(69, 22);
             this.button_Open.TabIndex = 3;
             this.button_Open.Text = "打开APK";
             this.button_Open.UseVisualStyleBackColor = true;
             this.button_Open.Click += new System.EventHandler(this.button_Open_Click);
             // 
+            // dateTimePicker_AuthExpire
+            // 
+            this.dateTimePicker_AuthExpire.Checked = false;
+            this.dateTimePicker_AuthExpire.Location = new System.Drawing.Point(79, 56);
+            this.dateTimePicker_AuthExpire.Name = "dateTimePicker_AuthExpire";
+            this.dateTimePicker_AuthExpire.ShowCheckBox = true;
+            this.dateTimePicker_AuthExpire.Size = new System.Drawing.Size(200, 21);
+            this.dateTimePicker_AuthExpire.TabIndex = 4;
+            // 
+            // label_AuthExpire
+            // 
+            this.label_AuthExpire.AutoSize = true;
+            this.label_AuthExpire.Location = new System.Drawing.Point(5, 62);
+            this.label_AuthExpire.Name = "label_AuthExpire";
+            this.label_AuthExpire.Size = new System.Drawing.Size(53, 12);
+            this.label_AuthExpire.TabIndex = 5;
+            this.label_AuthExpire.Text = "授权期限";
+            // 
             // Form_Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 210);
+            this.ClientSize = new System.Drawing.Size(380, 95);
+            this.Controls.Add(this.label_AuthExpire);
+            this.Controls.Add(this.dateTimePicker_AuthExpire);
             this.Controls.Add(this.button_Open);
             this.Controls.Add(this.button_Auth);
             this.Controls.Add(this.textBox_APK);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form_Main";
             this.Text = "APK授权工具";
             this.ResumeLayout(false);
@@ -87,6 +113,8 @@
         private System.Windows.Forms.TextBox textBox_APK;
         private System.Windows.Forms.Button button_Auth;
         private System.Windows.Forms.Button button_Open;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_AuthExpire;
+        private System.Windows.Forms.Label label_AuthExpire;
     }
 }
 
