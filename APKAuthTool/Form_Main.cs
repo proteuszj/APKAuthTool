@@ -46,6 +46,12 @@ namespace APKAuthTool
             byte[] data = new ByteArray(signData, ByteArray.StringEncodingTypeEnum.ASCII).Data;
             byte[] value = key.SignData(data, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1);
 
+            //  Test verify
+            //RSA pubkey = RSACertificateExtensions.GetRSAPublicKey(cert);
+            //X509Certificate2 cert2 = new X509Certificate2("MPS_APK_AUTH.cer");
+            //RSA pubkey2 = RSACertificateExtensions.GetRSAPublicKey(cert2);
+            //bool test = pubkey2.VerifyData(data, value, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1);
+
             //wirte to file
             string signFileName = textBox_APK.Text + ".sign";
             StreamWriter sw = new StreamWriter(signFileName);
