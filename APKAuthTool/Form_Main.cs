@@ -47,10 +47,17 @@ namespace APKAuthTool
             byte[] value = key.SignData(data, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1);
 
             //  Test verify
-            //RSA pubkey = RSACertificateExtensions.GetRSAPublicKey(cert);
-            //X509Certificate2 cert2 = new X509Certificate2("MPS_APK_AUTH.cer");
-            //RSA pubkey2 = RSACertificateExtensions.GetRSAPublicKey(cert2);
-            //bool test = pubkey2.VerifyData(data, value, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1);
+            if (!key.VerifyData(data, value, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1) || !RSACertificateExtensions.GetRSAPublicKey(cert).VerifyData(data, value, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1))
+            {
+                MessageBox.Show("私钥证书验证签名失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            X509Certificate2 cert2 = new X509Certificate2("MPS_APK_AUTH.cer");
+            if (!RSACertificateExtensions.GetRSAPublicKey(cert2).VerifyData(data, value, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1))
+            {
+                MessageBox.Show("私钥证书验证签名失败", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             //wirte to file
             string signFileName = textBox_APK.Text + ".sign";
